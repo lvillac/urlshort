@@ -13,7 +13,7 @@ class RegistroController extends AbstractController
     public function index()
     {
         return $this->render('registro/index.html.twig', [
-            'controller_name' => 'Hola mundo',
+            'controller_name' => 'Hola mundo prueba',
         ]);
     }
 }
