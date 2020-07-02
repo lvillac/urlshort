@@ -43,6 +43,16 @@ class Urls
 
     private $user;
 
+    /**
+     * Urls constructor.
+     */
+    public function __construct()
+    {
+        $this->clicks = '';
+        $this->url_corta = '';
+        $this->fecha_creacion = new \DateTime();
+    }
+
 
     public function getId(): ?int
     {
@@ -96,4 +106,22 @@ class Urls
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
+    }
+
+
 }

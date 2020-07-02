@@ -19,6 +19,16 @@ class UrlsRepository extends ServiceEntityRepository
         parent::__construct($registry, Urls::class);
     }
 
+    public function getUrlsUser(){
+
+        return $this->getEntityManager()
+        ->createQuery('
+        SELECT url.id, url.url, url.url_corta, url.clicks, url.fecha_creacion
+        From App:Urls url   
+        ')->getResult();
+
+    }
+
     // /**
     //  * @return Urls[] Returns an array of Urls objects
     //  */

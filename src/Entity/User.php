@@ -11,6 +11,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+
+    const REGISTRO_OK = 'Se ha registrado correctamente';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -51,6 +54,17 @@ class User implements UserInterface
      */
 
     private $urls;
+
+    /**
+     * User constructor.
+     * @param $id
+     */
+    public function __construct()
+    {
+        $this->activo = 0;
+        $this->roles = ['ROLE_USER'];
+    }
+
 
     public function getId(): ?int
     {
