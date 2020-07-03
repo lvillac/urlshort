@@ -24,8 +24,9 @@ class UrlsRepository extends ServiceEntityRepository
         return $this->getEntityManager()
         ->createQuery('
         SELECT url.id, url.url, url.url_corta, url.clicks, url.fecha_creacion
-        From App:Urls url   
-        ')->getResult();
+        From App:Urls url  
+        Order by url.clicks desc 
+        ');
 
     }
 

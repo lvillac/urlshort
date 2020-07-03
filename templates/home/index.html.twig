@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Urlshort - Home{% endblock %}
+
+{% block body %}
+
+    {{ parent() }}
+
+    {# total items count #}
+    <section class="listado">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="my-5">Listado de Urls</h1>
+                    <table width="100%">
+                        <tr>
+                            {# sorting of properties based on query components #}
+                            <th>{{ knp_pagination_sortable(pagination, 'Url', 'a.url') }}</th>
+                            <th>
+                                {{ knp_pagination_sortable(pagination, 'Url corta', 'a.url_corta') }}
+                            </th>
+                            <th>
+                                {{ knp_pagination_sortable(pagination, 'Fecha creación', ['a.fecha_creacion']) }}
+                            </th>
+                        </tr>
+
+                        {# table body #}
+                        {% for article in pagination %}
+                            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                <td>{{ article.url }}</td>
+                                <td>{{ article.url_corta }}</td>
+                                <td>{{ article.fecha_creacion | date('Y-m-d') }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    {# display navigation #}
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

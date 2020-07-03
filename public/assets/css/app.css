@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* COMUNES */
+body{margin: 0 !important;font-family: 'Roboto', sans-serif; background-color: #f1f2f6;}
+h1, h2, h3,h4{font-family: 'Roboto', sans-serif; font-weight: bold; margin-bottom: 20px !important; font-weight: bold; color:#330079;}
+p,label,li{}
+a {color: #000000;}
+a:hover {opacity: .7; cursor: pointer; text-decoration: none;}
+ul{margin-bottom: 0;}
+input[type="checkbox"]{height: auto !important;}
+
+header{width: 100%; background-color: #4b588a;}
+header .navbar a{color: #ffffff;}
+header .navbar-expand-lg .navbar-nav .nav-link{padding: .7rem 2rem;}
+
+.listado table tr th{background-color: #c6c8ca;}
+.listado table tr th, .listado table tr td{text-align: left;padding: 8px 15px;}
