@@ -28,7 +28,7 @@ class Urls
     private $url_corta;
 
     /**
-     * @ORM\Column(type="string", length=1000000)
+     * @ORM\Column(type="integer")
      */
     private $clicks;
 

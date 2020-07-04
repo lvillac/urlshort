@@ -18,7 +18,7 @@ class HomeController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->getRepository(Urls::class)->getUrlsUser();
+        $query = $em->getRepository(Urls::class)->getUrls();
 
         $pagination = $paginator->paginate(
             $query, /* query NOT result */

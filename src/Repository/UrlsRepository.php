@@ -25,8 +25,36 @@ class UrlsRepository extends ServiceEntityRepository
         ->createQuery('
         SELECT url.id, url.url, url.url_corta, url.clicks, url.fecha_creacion
         From App:Urls url  
+        Order by url.fecha_creacion desc 
+        ');
+
+    }
+
+    public function getUrls(){
+
+        return $this->getEntityManager()
+            ->createQuery('
+        SELECT url.id, url.url, url.url_corta, url.clicks, url.fecha_creacion
+        From App:Urls url  
         Order by url.clicks desc 
         ');
+
+    }
+
+    public function updateClicks($clicks, $id){
+
+        return $this->getEntityManager()
+            ->update(Project::class, 'u')
+
+            ->set('u.clicks', ':clicks')
+            ->setParameter('clicks', $clicks)
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        $result = $query->execute();
+
+        return $result;
 
     }
 

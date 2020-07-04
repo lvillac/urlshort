@@ -6,6 +6,7 @@ use App\Entity\Urls;
 use App\Entity\User;
 use App\Form\UrlsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,7 +23,7 @@ class UrlsController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $this->getUser();
             $url->setUser($user);
@@ -63,21 +64,69 @@ class UrlsController extends AbstractController
     /**
      * @Route("/url-user", name="urlsUser")
      */
-    public function urlsUser(){
+    public function urlsUser()
+    {
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
         $urls = $em->getRepository(Urls::class)->findBy(['user' => $user]);
-        return$this->render('urls/urlsUser.html.twig', ['urls' => $urls]);
+        return $this->render('urls/urlsUser.html.twig', ['urls' => $urls]);
 
     }
 
 
     //1. Estategia para acortar urls
-    public function shortUrl($aUrl){
+    public function shortUrl($aUrl)
+    {
 
-       return  $url_short = 'http://xy.com/'. substr(md5($aUrl.mt_rand()), 0, 8);
+        return $url_short = 'http://xy.com/' . substr(md5($aUrl . mt_rand()), 0, 8);
+
+    }
+
+    //2. Estategia para acortar urls largas
+    public function acortarUrl($aUrl)
+    {
+        $longitud = strlen($aUrl);
+        if ($longitud > 45) {
+            $longitud = $longitud - 30;
+            $parte_inicial = substr($aUrl, 0, -$longitud);
+            $parte_final = substr($aUrl, -15);
+            $nueva_url = $parte_inicial . "[ ... ]" . $parte_final;
+            return $nueva_url;
+        } else {
+            return $aUrl;
+        }
+    }
+
+    /**
+     * @Route("/clicks", options={"expose"=true}, name="clicks")
+     */
+    public function ajaxClicks(Request $request){
+
+        if($request->isXmlHttpRequest()){
+
+            $em = $this->getDoctrine()->getManager();
+             $id = $request->request->get('id');
+             $url = $em->getRepository(Urls::class)->find($id);
+             $clicks = $url->getClicks() +1;
+
+             //Aumentamos clicks
+            $query = $em->getRepository(Urls::class)->createQueryBuilder('')
+                ->update(Urls::class, 'url')
+                ->set('url.clicks', ':clicks')
+                ->setParameter('clicks', $clicks)
+                ->where('url.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery();
+
+            $result = $query->execute();
+
+             return new JsonResponse(['clicks' => $clicks]);
+        }else{
+            throw new \Exception('Error');
+        }
+
 
     }
 

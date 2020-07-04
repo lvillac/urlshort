@@ -14,8 +14,8 @@ class UrlsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url', TextType::class, ['required' => true, 'trim' => true, 'label' => false, 'attr' => ['placeholder' => 'Introduce aqui la url que deseas acortar']])
-            ->add('guardar', SubmitType::class)
+            ->add('url', TextType::class, ['required' => true, 'trim' => true, 'label' => false, 'attr' => ['placeholder' => 'Introduce aquí la URL']])
+            ->add('acortar', SubmitType::class)
         ;
     }
 

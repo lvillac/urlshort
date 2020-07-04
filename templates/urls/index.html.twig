@@ -1,9 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UrlsController!{% endblock %}
+{% block title %}{{ parent() }}{% endblock %}
 
 {% block body %}
 
-    {{ form(form) }}
+    <header class="header-dashboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 menu">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="{{ path('dashboard') }}">Dashboard</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('home') }}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('RegistrarUrl') }}">Acortar URL</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('urlsUser') }}">Mis URLs</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="wrapper-acortador">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center my-5">
+                    <h2 class="mb-1">Acortador de URLs</h2>
+                    <p class="sub-h2">Introduce aquí la URL que deseas acortar</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 {% endblock %}

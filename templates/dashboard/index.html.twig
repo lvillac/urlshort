@@ -3,55 +3,86 @@
 {% block title %}{{ parent() }}{% endblock %}
 
 {% block body %}
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Urlshort</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
+    <header class="header-dashboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 menu">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="{{ path('dashboard') }}">Dashboard</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('home') }}">Home</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ path('RegistrarUrl') }}">Acortar url</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Hola {{ user }}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ path('app_logout') }}">Desconectar</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </nav>
+    </header>
 
-    {# total items count #}
-    <table>
-        <tr>
-            {# sorting of properties based on query components #}
-            <th>{{ knp_pagination_sortable(pagination, 'Url', 'a.id') }}</th>
-            <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Url corta', 'a.title') }}
-            </th>
-            <th{% if pagination.isSorted(['a.date', 'a.time']) %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Fecha creación', ['a.date', 'a.time']) }}
-            </th>
-        </tr>
 
-        {# table body #}
-        {% for article in pagination %}
-            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td>{{ article.url }}</td>
-                <td>{{ article.url_corta }}</td>
-                <td>{{ article.fecha_creacion | date('Y-m-d') }}</td>
-            </tr>
-        {% endfor %}
-    </table>
-    {# display navigation #}
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+    <section class="wrapper-dashboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>Urls creadas</h1>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        {# sorting of properties based on query components #}
+                        <th scope="col">URL</th>
+                        <th scope="col">
+                            URL corta
+                        </th>
+                        <th scope="col">
+                            Cliks
+                        </th>
+                        <th scope="col">
+                            Fecha creación
+                        </th>
+                    </tr>
+                    </thead>
+
+                    {# table body #}
+                    <tbody>
+                    {% for article in pagination %}
+                        <tr {% if loop.index is odd %}class="color"{% endif %}>
+                            <td>{{ article.url }}</td>
+                            <td>{{ article.url_corta }}</td>
+                            <td>{{ article.clicks }}</td>
+                            <td>{{ article.fecha_creacion | date('Y-m-d h:m:s') }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    {# display navigation #}
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

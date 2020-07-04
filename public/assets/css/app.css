@@ -2,7 +2,8 @@
 
 /* COMUNES */
 body{margin: 0 !important;font-family: 'Roboto', sans-serif; background-color: #f1f2f6;}
-h1, h2, h3,h4{font-family: 'Roboto', sans-serif; font-weight: bold; margin-bottom: 20px !important; font-weight: bold; color:#330079;}
+h1{font-family: 'GoodTimingRg-Bold', sans-serif; font-size: 36px; line-height: 45px; color: #330079; text-transform: uppercase;}
+h2, h3,h4{font-family: 'Roboto', sans-serif; font-weight: bold; margin-bottom: 20px; font-weight: bold; color:#330079;}
 p,label,li{}
 a {color: #000000;}
 a:hover {opacity: .7; cursor: pointer; text-decoration: none;}
@@ -13,5 +14,21 @@ header{width: 100%; background-color: #4b588a;}
 header .navbar a{color: #ffffff;}
 header .navbar-expand-lg .navbar-nav .nav-link{padding: .7rem 2rem;}
 
+.header-dashboard{background-color: #8a4b5e;}
+
 .listado table tr th{background-color: #c6c8ca;}
 .listado table tr th, .listado table tr td{text-align: left;padding: 8px 15px;}
+
+
+/* DASHBOARD */
+
+.menu .navbar-brand, .menu-home .navbar-brand{font-family: 'GoodTimingRg-Regular', sans-serif; color: #ffffff !important; text-transform: uppercase; font-size: 28px;}
+.menu .dropdown-menu{left: 80px; right: 0;}
+.menu .dropdown-menu .dropdown-item, .menu-home .dropdown-menu .dropdown-item{font-family: 'GoodTimingRg-Regular', sans-serif; color: #5a6268 !important;}
+.wrapper-dashboard h1{color: #dc0554; text-transform: uppercase; margin: 40px 0 50px;}
+.wrapper-dashboard .navigation{margin-top: 80px;}
+.wrapper-dashboard .navigation .pagination{display: flex; justify-content: center;}
+
+.wrapper-acortador #urls input{font-family: 'Roboto Light', sans-serif; font-size: 18px; padding: 9px 20px 9px 15px; width: 420px; height: 49px; border-radius: 0px;}
+.wrapper-acortador #urls button{font-family: 'Roboto-Bold', sans-serif; font-size: 23px; color: #ffffff;background-color: #330079; border-radius: 50px; padding: 7px 40px; text-transform: uppercase; border: 2px solid #330079; cursor: pointer; margin-top: 40px;}
+.wrapper-acortador #urls button:hover{color: #330079;background-color: transparent;}

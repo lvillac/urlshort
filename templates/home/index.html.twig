@@ -15,21 +15,25 @@
                     <table width="100%">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'Url', 'a.url') }}</th>
+                            <th>Url</th>
                             <th>
-                                {{ knp_pagination_sortable(pagination, 'Url corta', 'a.url_corta') }}
+                                Url Corta
                             </th>
                             <th>
-                                {{ knp_pagination_sortable(pagination, 'Fecha creación', ['a.fecha_creacion']) }}
+                                Clicks
+                            </th>
+                            <th>
+                                Fecha de creación
                             </th>
                         </tr>
 
                         {# table body #}
                         {% for article in pagination %}
                             <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                <td>{{ article.url }}</td>
-                                <td>{{ article.url_corta }}</td>
-                                <td>{{ article.fecha_creacion | date('Y-m-d') }}</td>
+                                <td><a href="{{ article.url }}" title="{{ article.url }}" class="btn-click" onclick="clicks({{ article.id  }})"> {{ article.url }}</a></td>
+                                <td><a href="{{ article.url_corta }}" title="{{ article.url_corta }}" onclick="clicks({{ article.id  }})"> {{ article.url_corta }}</a></td>
+                                <td> <span class="nClicks">{{ article.clicks }}</span></td>
+                                <td>{{ article.fecha_creacion | date('Y-m-d h:m:s') }}</td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -44,3 +48,12 @@
 
 
 {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+{% endblock %}
+
+
