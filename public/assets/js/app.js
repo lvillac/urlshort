@@ -1,14 +1,33 @@
+
 $(document).ready(function () {
 
-//console.log('hola mundo');
 
     $('.btn-click').on('click', function (event) {
-        event.preventDefault();
+
+        var ruta = Routing.generate('clicks')
+        var id = $(this).attr('data-rel');
+        var clicks = $(this).parent().parent().find('.nClicks');
+
+        $.ajax({
+            type: 'POST',
+            url: ruta,
+            dataType: "json",
+            async: true,
+            data: ({id: id}),
+            success: function (data) {
+
+                clicks.html(data['clicks']);
+            }
+
+        });
+
+
     });
 
 
 });
 
+/*
 function clicks(id) {
 
     //console.log(id);
@@ -24,6 +43,7 @@ function clicks(id) {
         success: function (data) {
             console.log(data['clicks']);
 
+
             $('.nClicks').html(data['clicks']);
         }
 
@@ -31,3 +51,5 @@ function clicks(id) {
 
 
 }
+
+ */

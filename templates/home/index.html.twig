@@ -30,8 +30,8 @@
                         {# table body #}
                         {% for article in pagination %}
                             <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                <td><a href="{{ article.url }}" title="{{ article.url }}" class="btn-click" onclick="clicks({{ article.id  }})"> {{ article.url }}</a></td>
-                                <td><a href="{{ article.url_corta }}" title="{{ article.url_corta }}" onclick="clicks({{ article.id  }})"> {{ article.url_corta }}</a></td>
+                                <td><a href="{{ article.url }}" title="{{ article.url }}" class="btn-click" data-rel="{{ article.id  }}" target="_blank"> {{ article.url }}</a></td>
+                                <td><a href="{{ article.url }}" title="{{ article.url_corta }}" class="btn-click" data-rel="{{ article.id  }}" target="_blank"> {{ article.url_corta }}</a></td>
                                 <td> <span class="nClicks">{{ article.clicks }}</span></td>
                                 <td>{{ article.fecha_creacion | date('Y-m-d h:m:s') }}</td>
                             </tr>

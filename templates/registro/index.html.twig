@@ -3,14 +3,24 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
+<section class="registro">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Introduce estos datos <br>para registrarte</h1>
+                <div class="content-registro">
+                    {# read and display just one flash message type #}
+                    {% for message in app.flashes('ok') %}
+                        <div class="flash-notice">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
 
-    {# read and display just one flash message type #}
-    {% for message in app.flashes('ok') %}
-    <div class="flash-notice">
-        {{ message }}
+                    {{ form(formulario) }}
+                </div>
+            </div>
+        </div>
     </div>
-    {% endfor %}
-
-    {{ form(formulario) }}
+</section>
 
 {% endblock %}

@@ -23,9 +23,11 @@ class UrlsController extends AbstractController
 
         $form->handleRequest($request);
 
+        $user = $this->getUser();
+        $nombre_usuario = $user->getNombre();
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user = $this->getUser();
             $url->setUser($user);
 
             $aUrl = $form['url']->getData();
@@ -43,7 +45,8 @@ class UrlsController extends AbstractController
         }
 
         return $this->render('urls/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $nombre_usuario
         ]);
     }
 
