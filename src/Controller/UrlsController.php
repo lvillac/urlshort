@@ -95,7 +95,7 @@ class UrlsController extends AbstractController
             $longitud = $longitud - 30;
             $parte_inicial = substr($aUrl, 0, -$longitud);
             $parte_final = substr($aUrl, -15);
-            $nueva_url = $parte_inicial . "[ ... ]" . $parte_final;
+            $nueva_url = $parte_inicial . $parte_final;
             return $nueva_url;
         } else {
             return $aUrl;
