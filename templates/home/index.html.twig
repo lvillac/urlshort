@@ -12,28 +12,28 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h1 class="my-5">Listado de Urls</h1>
-                    <table width="100%">
-                        <tr>
+                    <table class="table table-striped" width="100%">
+                        <tr class="d-flex">
                             {# sorting of properties based on query components #}
-                            <th>Url</th>
-                            <th>
+                            <th class="col-5">Url</th>
+                            <th class="col-3">
                                 Url Corta
                             </th>
-                            <th>
+                            <th class="col-1 text-center">
                                 Clicks
                             </th>
-                            <th>
+                            <th class="col-3 text-center">
                                 Fecha de creación
                             </th>
                         </tr>
 
                         {# table body #}
                         {% for article in pagination %}
-                            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                <td><a href="{{ article.url }}" title="{{ article.url }}" class="btn-click" data-rel="{{ article.id  }}" target="_blank"> {{ article.url }}</a></td>
-                                <td><a href="{{ article.url }}" title="{{ article.url_corta }}" class="btn-click" data-rel="{{ article.id  }}" target="_blank"> {{ article.url_corta }}</a></td>
-                                <td> <span class="nClicks">{{ article.clicks }}</span></td>
-                                <td>{{ article.fecha_creacion | date('Y-m-d h:m:s') }}</td>
+                            <tr class="{% if loop.index is odd %}color{% endif %} d-flex">
+                                <td class="col-5"><a href="{{ article.url }}" title="{{ article.url }}" class="btn-click" data-rel="{{ article.id  }}" target="_blank"> {{ article.url }}</a></td>
+                                <td class="col-3"><a href="{{ article.url }}" title="{{ article.url_corta }}" class="btn-click" data-rel="{{ article.id  }}" target="_blank"> {{ article.url_corta }}</a></td>
+                                <td class="col-1 text-center"> <span class="nClicks">{{ article.clicks }}</span></td>
+                                <td class="col-3 text-center">{{ article.fecha_creacion | date('Y-m-d h:m:s') }}</td>
                             </tr>
                         {% endfor %}
                     </table>

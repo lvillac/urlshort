@@ -53,3 +53,8 @@ header .navbar-expand-lg .navbar-nav .nav-link{padding: .7rem 2rem;}
 .registro .content-registro #user button{font-family: 'Roboto-Bold', sans-serif; font-size: 23px; color: #ffffff;background-color: #330079; border-radius: 50px; padding: 7px 40px; text-transform: uppercase; border: 2px solid #330079; cursor: pointer; margin-top: 40px; width: 100%;}
 .registro .content-registro #user button:hover{color: #330079;background-color: transparent;}
 .registro .content-registro .flash-notice{font-family: 'Roboto-Bold', sans-serif;font-size: 18px;color: green;background-color: lightgreen;border-radius: 5px;padding: 7px 15px;border: 2px solid green;text-align: center;margin: 15px 0 35px;}
+
+/* HOME */
+
+.navigation{margin: 35px 0 40px;}
+.navigation .pagination{justify-content: center;}
