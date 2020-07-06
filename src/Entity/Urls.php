@@ -33,6 +33,11 @@ class Urls
     private $clicks;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date_click;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $fecha_creacion;
@@ -81,6 +86,22 @@ class Urls
         $this->url_corta = $url_corta;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateClick()
+    {
+        return $this->date_click;
+    }
+
+    /**
+     * @param mixed $date_click
+     */
+    public function setDateClick($date_click): void
+    {
+        $this->date_click = $date_click;
     }
 
     public function getClicks(): ?string

@@ -25,6 +25,7 @@ header .navbar-expand-lg .navbar-nav .nav-link{padding: .7rem 2rem;}
 .menu .navbar-brand, .menu-home .navbar-brand{font-family: 'GoodTimingRg-Regular', sans-serif; color: #ffffff !important; text-transform: uppercase; font-size: 28px;}
 .menu .dropdown-menu{left: 80px; right: 0;}
 .menu .dropdown-menu .dropdown-item, .menu-home .dropdown-menu .dropdown-item{font-family: 'GoodTimingRg-Regular', sans-serif; color: #5a6268 !important;}
+.menu .dropdown-menu .dropdown-item, .menu-home .dropdown-menu .dropdown-item.active{color: #e6e9ea !important;}
 .wrapper-dashboard h1{color: #dc0554; text-transform: uppercase; margin: 40px 0 50px;}
 .wrapper-dashboard .navigation{margin-top: 80px;}
 .wrapper-dashboard .navigation .pagination{display: flex; justify-content: center;}

@@ -32,7 +32,7 @@ class UrlsController extends AbstractController
 
             $aUrl = $form['url']->getData();
 
-            //Acortamos url -- Utilizamos la estrategia 1, para implementar otra estrategia solo hacer llamada a la funcion correspondiente a la strategia 2
+            //Acortamos url -- Utilizamos la estrategia 1, para implementar otra estrategia solo hacer llamada al nombre de la funcion correspondiente a la estrategia 2
             $url_short = $this->shortUrl($aUrl);
 
             $url->setUrlCorta($url_short);
@@ -112,6 +112,7 @@ class UrlsController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             $id = $request->request->get('id');
+            $dateClick = $request->request->get('dateclick');
             $url = $em->getRepository(Urls::class)->find($id);
             $clicks = $url->getClicks() + 1;
 
@@ -120,6 +121,8 @@ class UrlsController extends AbstractController
                 ->update(Urls::class, 'url')
                 ->set('url.clicks', ':clicks')
                 ->setParameter('clicks', $clicks)
+                ->set('url.date_click', ':date_click')
+                ->setParameter('date_click', $dateClick)
                 ->where('url.id = :id')
                 ->setParameter('id', $id)
                 ->getQuery();

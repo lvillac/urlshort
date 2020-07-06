@@ -29,8 +29,8 @@
                                                 Ordenar por
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item {% if app.request.get('_route') == 'home' %} active {% endif %}" href="{{ path('home') }}">Más visitas totales</a>
                                                 <a class="dropdown-item" href="">Más visitas en la última hora</a>
-                                                <a class="dropdown-item" href="">Más visitas totales</a>
                                                 <a class="dropdown-item" href="">Ranking de URLs más visitadas por dispositivo</a>
                                             </div>
                                         </li>
