@@ -32,7 +32,7 @@ class UrlsController extends AbstractController
 
             $aUrl = $form['url']->getData();
 
-            //Acortamos url
+            //Acortamos url -- Utilizamos la estrategia 1, para implementar otra estrategia solo hacer llamada a la funcion correspondiente a la strategia 2
             $url_short = $this->shortUrl($aUrl);
 
             $url->setUrlCorta($url_short);
@@ -105,16 +105,17 @@ class UrlsController extends AbstractController
     /**
      * @Route("/clicks", options={"expose"=true}, name="clicks")
      */
-    public function ajaxClicks(Request $request){
+    public function ajaxClicks(Request $request)
+    {
 
-        if($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
 
             $em = $this->getDoctrine()->getManager();
-             $id = $request->request->get('id');
-             $url = $em->getRepository(Urls::class)->find($id);
-             $clicks = $url->getClicks() +1;
+            $id = $request->request->get('id');
+            $url = $em->getRepository(Urls::class)->find($id);
+            $clicks = $url->getClicks() + 1;
 
-             //Aumentamos clicks
+            //Aumentamos clicks
             $query = $em->getRepository(Urls::class)->createQueryBuilder('')
                 ->update(Urls::class, 'url')
                 ->set('url.clicks', ':clicks')
@@ -125,8 +126,8 @@ class UrlsController extends AbstractController
 
             $result = $query->execute();
 
-             return new JsonResponse(['clicks' => $clicks]);
-        }else{
+            return new JsonResponse(['clicks' => $clicks]);
+        } else {
             throw new \Exception('Error');
         }
 
